@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue Names View Sample</title>
+</head>
+<body>
+	<div id="app">
+        <!-- 화면이 보여질 영역 -->
+        <router-view name="header"></router-view>
+        <router-view></router-view>
+        <!-- body부분에 이름을 넣지 않아도, default로 설정하면 사용가능 -->
+        <router-view name="footer"></router-view>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+    <script>
+        var Body = { template: '<div>This is Body</div>' };
+        var Header = { template: '<div>This is Header</div>' };
+        var Footer = { template: '<div>This is Footer</div>' };
+
+        var router = new VueRouter({
+            routes: [
+                {
+                    path: '/',
+                    components: {
+                        default: Body,
+                        header: Header,
+                        footer: Footer
+                    }
+                }
+            ]
+        });
+        var app = new Vue({
+            router
+        }).$mount('#app');
+    </script>
+
+</body>
+</html>
