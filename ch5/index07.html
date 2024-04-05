@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>디렉티브</title>
+</head>
+<body>
+    <div id="app">
+		<a v-if="flag">Study Vue.js</a>
+		<ul>
+			<li v-for="system in systems">{{ system}}</li>
+		</ul>
+		<p v-show="flag">Study Vue.js</p>
+		<!-- if문과 같은 내용. flag가 false 이면 보이지 않음-->
+		<h5 v-bind:id="uid">뷰 입문하기</h5>
+		<button v-on:click="popupAlert">경고창 버튼</button>
+	</div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+	            flag: true,
+				systems: ['android', 'ios', 'window'],
+				uid: 'id'
+			},
+			methods: {
+				popupAlert : function(){
+					return alert('경고 창 표시');
+				}
+			}
+        });
+    </script>
+</body>
+</html>

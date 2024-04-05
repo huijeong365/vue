@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>자바스크립트 표현식</title>
+</head>
+<body>
+	<!-- 자바스크립트 선언문과 분기 구문은 사용할 수 없다. -->
+	<!-- 복잡한 연산은 인스턴스 안에서 처리하고 화면에는 간단한 연산 결과만 표시해야 한다. -->
+    <div id="app">
+        <!-- {{ var a = 10; }} --> <!--  X -->
+		<!-- {{ if(true) {return 100} }} --> <!--  X -->
+		{{ true ? 100 : 0 }}
+		<!-- {{ message.split('').reverse().join('') }} --> <!-- X O -->
+		{{ reversedMessage }}
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue js!'
+			},
+			computed:{
+				reversedMessage : function(){
+					return this.message.split('').reverse().join('');
+				}
+			}
+        });
+    </script>
+</body>
+</html>

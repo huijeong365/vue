@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="getData"> 프레임 워크 목록 가져오기 </button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-resource@1.3.4"></script>
+	<!-- HTTP통신 : 요청(request), 응답(response)  -->
+	<script>
+        new Vue({
+            el: '#app',
+            methods:{
+                getData: function(){
+                    this.$http.get('https://raw.githubusercontent.com/ashram7/TypeScript/master/demo.json')
+                    .then(function(response){
+                        console.log(response);
+                        console.log(JSON.parse(response.data));
+                    });
+                }
+            }
+        });
+	</script>
+</body>
+</html>
