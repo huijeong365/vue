@@ -6,27 +6,47 @@
         <span class="addContainer" v-on:click="addWish">
             <i class="addBtn fas fa-plus" aria-hidden="true"></i>
         </span>
+
+        <modal v-if="showModal" @close="showModal=false">
+            <!--모달 제목-->
+            <h3 slot="header">경고</h3>
+            <!--모달 내용-->
+            <span slot="footer" @click="showModal=false">
+                위시 리스트를 입력하세요.
+                <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
+            </span>
+        </modal>
+
     </div>
 </template>
 <script>
+import Modal from './common/Modal.vue'
     export default{
         data(){
             return{
-                newWishItem:''
+                newWishItem:'',
+                showModal: false
             }
         },
         methods:{
             addWish(){
                 if(this.newWishItem !==""){
                     var value = this.newWishItem && this.newWishItem.trim();
+                    this.$emit('addWish', value);
                     //console.log(this.newWishItem);
-                    localStorage.setItem(value, value);
+                    //localStorage.setItem(value, value);
+                    //inputBox의 입력값을 초기화
                     this.clearInput();
+                } else {
+                    this.showModal = !this.showModal;
                 }
             },
             clearInput(){
                 this.newWishItem ='';
             }
+        },
+        components:{
+            Modal : Modal
         }
     }
 </script>
