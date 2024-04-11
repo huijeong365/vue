@@ -1,21 +1,30 @@
 <!-- WishFooter.vue -->
 <template lang="html">
-    <div class="clearAllContainer">
-        <span class="clearAllBtn" @click="clearWish">Clear All</span>
+    <div class="buttonContainer">
+        <div class="clearAllContainer">
+            <span class="clearAllBtn" @click="clearWish">Clear All</span>
+        </div>
     </div>
 </template>
 <script>
     export default{
         methods:{
             clearWish(){
+                const isAllRemover = confirm("정말 모든 일정을 삭제하시겠습니까?");
+                if(isAllRemover){
+                    this.$emit('removeAllOfChild');
+                }
                 this.$emit('removeAll');
                 //App.vue에 있는 (상위) removeAll을 사용한다.
-
             }
         }
     }
 </script>
 <style lang="css" scoped>
+.buttonContainer{
+    margin: 0 auto;
+    cursor: pointer;
+}
 .clearAllContainer{
     width: 7.5em;
     height: 50px;
